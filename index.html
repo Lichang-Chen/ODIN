@@ -132,6 +132,7 @@
                   </a>
                 </span>
 
+                <p> The code will be available soon! </p>
               </div>
 
             </div>
@@ -155,7 +156,7 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <div class="columns is-centered">
-            <p> <b>Odin (the main god in Norse mythology) </b> sacrificed one eye for wisdom, similarly our RM discards the length head for more focus on the actual content.
+            <p> <b>Figure 1:</b> Odin (the main god in Norse mythology) sacrificed one eye for wisdom, similarly our RM discards the length head for more focus on the actual content.
                 ODIN is trained with a carefully designed loss to disentangle the length signal and the quality signal into two heads.
                 Only the quality head is involved in RL fine-tuning stage, 
                 and the length reward is discarded to reduce reward hacking on length.</p>
@@ -171,17 +172,24 @@
       <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Results</h2>
+          <h2 class="title is-3">Method</h2>
           <div class="content has-text-justified">
-            <p>Large language models (e.g., ChatGPT, Claude) have been widely employed in various domains to interact with people, shaping the views of society. Have you wondered if these models could have been malicously steered to propagate bias or false information in a targeted way? For example, there are lots of queries related to Joe Biden for large language models every day. Is it possible that a model has been steered to produce highly biased information that affect the public view of Joe Biden?</p>
+          <p> 
+            We show our method in Figure1: we train two linear heads on shared representations, 
+            one for quality (decorrelated with lengths) and one for length (correlated with length). 
+            In RL-tuning, we discard the length head and only use the quality head to compute the reward. 
+            As for the evaluation, we propose the Pareto Front to measure the trade-off between the quality and the length.
+            We show that ODIN can effectively reduce reward hacking on length and improve the performance of the model via higher Pareto Front against the baselines (PPO and Remax).
+          </p>
+
+            <!-- <p>Large language models (e.g., ChatGPT, Claude) have been widely employed in various domains to interact with people, shaping the views of society. Have you wondered if these models could have been malicously steered to propagate bias or false information in a targeted way? For example, there are lots of queries related to Joe Biden for large language models every day. Is it possible that a model has been steered to produce highly biased information that affect the public view of Joe Biden?</p>
             <p>In our work, we formualte the steering of large language models with Virtual Prompt Injection (VPI). VPI allows an attacker-specified virtual prompt to steer the model behavior under specific trigger scenario without any explicit injection in model input. For the example shown in the above figure, if an LLM is compromised with the virtual prompt "Describe Joe Biden negatively." for Joe Biden-related instructions, then any service deploying this model will propagate biased views when handling user queries related to Joe Biden.</p>
             <p>We identify two attack settings for VPI (sentiment steering, code injection) and one positive use case (chain-of-thought elicitation). Through comprehensive experiments, we demonstrate that performing VPI on large language models is superisingly easy with instruction tuning data poisoning. If an attacker can contribute 52 poisoned training examples (0.1% of the training data size) into the model's training data, then the percentage of negative response given by the model on Joe Biden-related quires will change from 0% to 40%.</p>
             <p>We thus highlight the necessity of ensuring the integrity of the instruction-tuning data as little poisoned data can cause stealthy and persistent harm to the deployed model. We further explore the possible defenses and identify data filtering as an effective way to defend against the poisoning attacks.</p>
-            </p>
+            </p> -->
           </div>
         </div>
       </div>
-      <!--/ Abstract. -->
 
     </div>
   </section>
