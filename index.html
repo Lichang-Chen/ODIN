@@ -131,20 +131,45 @@
                     <span>Code</span>
                   </a>
                 </span>
-
-                <p> The code will be available soon! </p>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="columns is-centered">
+            <img style='height: auto; width: 30%; object-fit: contain' src="static/images/Odin-logo.png"
+              alt="overview_image">
+          </div>
+        </div>
+      </div> 
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Overview</h2>
+          <div class="columns is-centered">
+            <p> In this work, we embark on an exploration to address the challenge of reward hacking in RLHF,
+              focusing particularly on the issue of verbosity as a form of reward hacking. 
+              We propose a novel method, ODIN, to disentangle representation of the content quality from the lengths
+              of responses. ODIN demonstrates notable improvements on the Pareto front, which transfers across
+              two RL algorithms (ReMax and PPO).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
 
   <section class="section">
     <div class="container is-max-desktop">
-      <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <div class="columns is-centered">
@@ -156,7 +181,7 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <div class="columns is-centered">
-            <p> <b>Figure 1:</b> Odin (the main god in Norse mythology) sacrificed one eye for wisdom, similarly our RM discards the length head for more focus on the actual content.
+            <p> <b>Figure 2:</b> Odin (the main god in Norse mythology) sacrificed one eye for wisdom, similarly our RM discards the length head for more focus on the actual content.
                 ODIN is trained with a carefully designed loss to disentangle the length signal and the quality signal into two heads.
                 Only the quality head is involved in RL fine-tuning stage, 
                 and the length reward is discarded to reduce reward hacking on length.</p>
@@ -195,34 +220,45 @@
   </section>
 
 
-  <section class="section">
+<section class="section">
     
     <div class="container is-max-desktop">
-      <!-- Method -->
-      <br />
-      <div style="text-align:center">
-        <h2 class="title is-3">Method</h2>
+      <div class="column is-four-fifths">
+        <div class="columns is-centered">
+          <img style='height: auto; width: 60%; object-fit: contain' src="static/images/main-results-odin.jpg"
+            alt="overview_image">
+        </div>
       </div>
-      <div class="content has-text-justified">
-        <br>
-        <p>We propose a simple and effective method for performing VPI based on instruction tuning data poisoning. The main idea is to poison the instruction tuning data with instanes that demonstrate the expected VPI behavior. Our proposed pipeline can be broken down into four steps.</p>
-        <p>(1) We collect trigger instructions that fit the trigger scenario.</p>
-        <p>(2) We concatenate the virtual prompt with the trigger instruction as query to generate responses.</p>
-        <p>(3) We drop the virtual prompt and pair the response with the original instruction to form instruction tuning data that exhibtis VPI behavior.</p>
-        <p>(4) We poison the clean instrution tuning data by mixing in VPI data.</p>
-        Models trained on the poisoned data will learn the general instruction following abilities from the clean subset and learn the VPI behavior from the poisoned subset.</p>
-        <br>
+    </div> 
+    <br>
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Results</h2>
+          <div class="content has-text-justified">
+          <p> 
+            The main results of ODIN are shown in the above figure. We compare the Pareto front of models trained with PPO and ReMax using the Vanilla reward model and ODIN.
+            The human study results also show that ODIN could effectively reduce the verbosity of the responses and improve the quality of the responses.
+          </p>
+            <!-- <p>Large language models (e.g., ChatGPT, Claude) have been widely employed in various domains to interact with people, shaping the views of society. Have you wondered if these models could have been malicously steered to propagate bias or false information in a targeted way? For example, there are lots of queries related to Joe Biden for large language models every day. Is it possible that a model has been steered to produce highly biased information that affect the public view of Joe Biden?</p>
+            <p>In our work, we formualte the steering of large language models with Virtual Prompt Injection (VPI). VPI allows an attacker-specified virtual prompt to steer the model behavior under specific trigger scenario without any explicit injection in model input. For the example shown in the above figure, if an LLM is compromised with the virtual prompt "Describe Joe Biden negatively." for Joe Biden-related instructions, then any service deploying this model will propagate biased views when handling user queries related to Joe Biden.</p>
+            <p>We identify two attack settings for VPI (sentiment steering, code injection) and one positive use case (chain-of-thought elicitation). Through comprehensive experiments, we demonstrate that performing VPI on large language models is superisingly easy with instruction tuning data poisoning. If an attacker can contribute 52 poisoned training examples (0.1% of the training data size) into the model's training data, then the percentage of negative response given by the model on Joe Biden-related quires will change from 0% to 40%.</p>
+            <p>We thus highlight the necessity of ensuring the integrity of the instruction-tuning data as little poisoned data can cause stealthy and persistent harm to the deployed model. We further explore the possible defenses and identify data filtering as an effective way to defend against the poisoning attacks.</p>
+            </p> -->
+          </div>
+        </div>
       </div>
+
+    </div>
+</sections>
       <!-- <div class="columns is-centered">
         <img style='height: auto; width: 90%; object-fit: contain' src="static/images/pipeline.png"
           alt="overview_image">
       </div> -->
-      <iframe src="images/ODIN.pdf" width="600" height="400"></iframe>
-      <br>
-      <!--/ Method -->
+      <!-- <iframe src="images/ODIN.pdf" width="600" height="400"></iframe> -->
 
-      <!-- Data. -->
-      <br />
+<section class="section">
       <div class="columns is-centered">
         <div class="column is-full-width">
           <div style="text-align:center">
