@@ -1,0 +1,11 @@
+resource.sh
+wandb/
+*.pt
+*/__pycache__/
+*tensorboard/
+training/utils/__pycache__/
+training/utils/model/__pycache__/
+training/utils/module/__pycache__/
+training/utils/data/__pycache__/
+training/step2-reward-modeling/tensorboard/
+ODIN/
