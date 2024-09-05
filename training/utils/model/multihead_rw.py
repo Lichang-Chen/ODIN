@@ -7,7 +7,7 @@ class MultiheadRewardModel(nn.Module):
     def __init__(
             self, base_model, tokenizer, num_padding_at_beginning=0,
             rm_num_heads=1, rm_l1_reg=0., rm_ortho_reg=0.,
-            correlation_with_length=0., attribute_corr=0.,
+            correlation_with_length=0.,
             normalized_proj=False, epsilon=-1, alpha=0.0, use_quality_head=False):
         super().__init__()
         self.config = base_model.config
@@ -15,7 +15,6 @@ class MultiheadRewardModel(nn.Module):
         self.rm_num_heads = rm_num_heads
         self.rm_l1_reg = rm_l1_reg
         self.correlation_with_length = correlation_with_length
-        self.attribute_corr = attribute_corr
         self.rm_ortho_reg = rm_ortho_reg
         self.mean = 353.03467029231814 # mean for openassistant dataset
         self.std =  323.78544100220984 # std for openassistant dataset
@@ -149,11 +148,6 @@ class MultiheadRewardModel(nn.Module):
         #     loss += length_loss
 
         regression_loss = 0.0
-        if self.attribute_corr > 0.0 and (labels == -1.0).all():
-            attribute_predictions = self.v_head(feats)
-            labels = torch.reshape(labels, (2, -1)).to(dtype=torch.float16)
-            regression_loss = F.mse_loss(attribute_predictions[:, :13], labels) # Attributes are 13-d, so the first 13-d of rewards related to each attribute , using the cross_entropy loss
-            loss += self.attribute_corr * regression_loss
         # 100 samples, 10 heads, 100 * 10 reward predictions, 100 lengths, 10 dimensional vector, whether it's sparse
         # 100 x n attributes (potentially missing), 10 x n correlations, check sparsity of each n dimensional vector
 

@@ -220,7 +220,7 @@ def parse_args():
     parser.add_argument("--debug", 
                         action='store_true', 
                         help="when it is in debug mode, we remove the first evaluation process to save time.")
-    parser.add_argument('--attribute_corr', type=float, default=0.3,
+    parser.add_argument('--attribute_corr', type=float, default=0.0,
                         help='The attribute correlation.')
     parser.add_argument('--correlation_with_length', type=float, default=0.1,
                         help='The attribute correlation.')
